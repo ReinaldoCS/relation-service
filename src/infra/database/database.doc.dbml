@@ -1,0 +1,35 @@
+Project relation_db {
+database_type: 'PostgreSQL'
+Note: 'Database'
+}
+
+table users {
+  id int [pk]
+  name varchar [not null]
+  email varchar [unique, not null]
+  password varchar [not null, note: "criptografada"]
+  created_at datetime [default: `now()`, note: "data de criação"]
+  updated_at datetime
+}
+
+table rooms {
+  id varchar [pk]
+  name varchar [not null]
+  creator_id varchar [ref: > users.id]
+  created_at datetime [default: `now()`, note: "data de criação"]
+}
+
+table members_rooms {
+  room_id varchar [ref: > rooms.id]
+  member_id varchar [ref: > users.id]
+}
+
+table cards {
+  id varchar [pk]
+  room_id varchar [ref: > rooms.id]
+  content varchar
+  rating int
+  recipient_id varchar [ref: > users.id]
+  creator_id varchar [ref: > users.id]
+  created_at datetime [default: `now()`, note: "data de criação"]
+}
