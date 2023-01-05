@@ -1,5 +1,5 @@
 export class Password {
-  private password: string;
+  private readonly password: string;
 
   constructor(password: string) {
     const isPasswordLengthValid = this.validatePasswordLength(password);
@@ -42,7 +42,7 @@ export class Password {
   }
 
   private validatePasswordHasNumber(password: string): boolean {
-    return /[1-9]/.test(password);
+    return /[0-9]/.test(password);
   }
 
   private validateCharacterSequence(password: string): boolean {

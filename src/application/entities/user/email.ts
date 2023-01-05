@@ -1,5 +1,5 @@
 export class Email {
-  private email: string;
+  private readonly email: string;
 
   constructor(email: string) {
     const isEmailHasTypeEmail = this.validateEmailType(email);
