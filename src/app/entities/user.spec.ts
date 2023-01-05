@@ -1,4 +1,4 @@
-import { User } from '.';
+import { User } from './user';
 import { Email } from './email';
 import { Name } from './Name';
 import { Password } from './password';

@@ -1,7 +1,7 @@
 import { User } from '../entities/user';
-import { Email } from '../entities/user/email';
-import { Name } from '../entities/user/Name';
-import { Password } from '../entities/user/password';
+import { Email } from '../entities/email';
+import { Name } from '../entities/Name';
+import { Password } from '../entities/password';
 import { UsersRepository } from '../repositories/users-repository';
 
 interface RegisterUserRequest {
