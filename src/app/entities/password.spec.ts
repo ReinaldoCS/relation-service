@@ -3,7 +3,9 @@ import { Password } from './password';
 describe('User password', () => {
   it('should be able to a user password', () => {
     const password = new Password('!Testing12');
+
     expect(password).toBeTruthy();
+    expect(password.value).toEqual('!Testing12');
   });
 
   it('should not be able a user password with less than 8 characters', () => {

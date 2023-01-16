@@ -5,6 +5,7 @@ describe('User name', () => {
     const name = new Name('Foo Bar');
 
     expect(name).toBeTruthy();
+    expect(name.value).toEqual('Foo Bar');
   });
 
   it('should not be able to a user name with less than 3 characters', () => {

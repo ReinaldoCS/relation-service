@@ -13,5 +13,8 @@ describe('User', () => {
     });
 
     expect(user).toBeTruthy();
+    expect(user.name.value).toEqual('Foo Bar');
+    expect(user.email.value).toEqual('foo.bar@mailinator.com');
+    expect(user.password.value).toEqual('!Test123');
   });
 });

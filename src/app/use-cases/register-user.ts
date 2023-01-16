@@ -3,6 +3,7 @@ import { Email } from '../entities/email';
 import { Name } from '../entities/Name';
 import { Password } from '../entities/password';
 import { UsersRepository } from '../repositories/users-repository';
+import { Injectable } from '@nestjs/common';
 
 interface RegisterUserRequest {
   name: string;
@@ -14,6 +15,7 @@ interface RegisterUserResponse {
   user: User;
 }
 
+@Injectable()
 export class RegisterUser {
   constructor(private userRepository: UsersRepository) {}
 

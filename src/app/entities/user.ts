@@ -38,38 +38,38 @@ export class User {
   }
 
   public get name(): Name {
-    return this.name;
+    return this.props.name;
   }
 
   public set name(name: Name) {
-    this.name = name;
+    this.props.name = name;
   }
 
   public get password(): Password {
-    return this.password;
+    return this.props.password;
   }
 
   public set password(password: Password) {
-    this.password = password;
+    this.props.password = password;
   }
 
   public get email(): Email {
-    return this.email;
+    return this.props.email;
   }
 
   public set email(email: Email) {
-    this.email = email;
+    this.props.email = email;
   }
 
   public get createdAt(): Date {
-    return this.createdAt;
+    return this.props.createdAt;
   }
 
   public get updatedAt(): Date | null {
-    return this.updatedAt;
+    return this.props.updatedAt;
   }
 
   public set updatedAt(date: Date) {
-    this.updatedAt = date;
+    this.props.updatedAt = date;
   }
 }

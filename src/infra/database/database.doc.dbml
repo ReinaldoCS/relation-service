@@ -4,7 +4,7 @@ Note: 'Database'
 }
 
 table users {
-  id int [pk]
+  id varchar [pk]
   name varchar [not null]
   email varchar [unique, not null]
   password varchar [not null, note: "criptografada"]
@@ -20,6 +20,7 @@ table rooms {
 }
 
 table members_rooms {
+  id varchar [pk]
   room_id varchar [ref: > rooms.id]
   member_id varchar [ref: > users.id]
 }

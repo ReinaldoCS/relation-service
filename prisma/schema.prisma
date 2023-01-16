@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id         String    @id
+  name       String
+  email      String    @unique
+  password   String
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  Rooms                 Rooms[]
+  MembersRooms          MembersRooms[]
+  Users_creatorToUser   Cards[]        @relation("Users_creatorToUser")
+  Users_recipientToUser Cards[]        @relation("Users_recipientToUser")
+
+  @@map("users")
+}
+
+model Rooms {
+  id         String   @id
+  name       String
+  created_at DateTime @default(now())
+
+  creator    Users  @relation(references: [id], fields: [creator_id])
+  creator_id String
+
+  MembersRooms MembersRooms[]
+  Cards        Cards[]
+
+  @@map("rooms")
+}
+
+model MembersRooms {
+  id String @id
+
+  room    Rooms  @relation(references: [id], fields: [room_id])
+  room_id String
+
+  member    Users  @relation(references: [id], fields: [member_id])
+  member_id String
+
+  @@map("members_rooms")
+}
+
+model Cards {
+  id         String   @id
+  content    String
+  rating     Int
+  created_at DateTime @default(now())
+
+  room    Rooms  @relation(references: [id], fields: [room_id])
+  room_id String
+
+  creator    Users  @relation("Users_creatorToUser", references: [id], fields: [creator_id])
+  creator_id String
+
+  recipient    Users  @relation("Users_recipientToUser", references: [id], fields: [recipient_id])
+  recipient_id String
+
+  @@map("cards")
+}
