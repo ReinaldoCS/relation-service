@@ -8,9 +8,9 @@
  */
 
 import { randomUUID } from 'node:crypto';
-import { Replace } from 'src/helpers/Replace';
+import { Replace } from '@helpers/Replace';
 import { Email } from './email';
-import { Name } from './Name';
+import { Name } from './name';
 import { Password } from './password';
 
 interface UserProps {
@@ -18,7 +18,7 @@ interface UserProps {
   email: Email;
   password: Password;
   createdAt: Date;
-  updatedAt?: Date | null;
+  updatedAt?: Date | null | undefined;
 }
 
 export class User {
@@ -65,11 +65,11 @@ export class User {
     return this.props.createdAt;
   }
 
-  public get updatedAt(): Date | null {
+  public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }
 
-  public set updatedAt(date: Date) {
+  public set updatedAt(date: Date | null | undefined) {
     this.props.updatedAt = date;
   }
 }

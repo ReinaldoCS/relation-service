@@ -1,6 +1,6 @@
 import { User } from './user';
 import { Email } from './email';
-import { Name } from './Name';
+import { Name } from './name';
 import { Password } from './password';
 
 describe('User', () => {

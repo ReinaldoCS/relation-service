@@ -1,4 +1,4 @@
-import { Name } from './Name';
+import { Name } from './name';
 
 describe('User name', () => {
   it('should be able to a user name', () => {

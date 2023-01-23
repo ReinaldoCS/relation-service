@@ -1,4 +1,4 @@
-import { InMemoryUsersRepository } from '../../../test/repositories/in-memory-users-repository';
+import { InMemoryUsersRepository } from '@test/repositories/in-memory-users-repository';
 import { RegisterUser } from './register-user';
 
 describe('Register user', () => {

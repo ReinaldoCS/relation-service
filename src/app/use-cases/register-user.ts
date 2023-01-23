@@ -1,6 +1,6 @@
 import { User } from '../entities/user';
 import { Email } from '../entities/email';
-import { Name } from '../entities/Name';
+import { Name } from '../entities/name';
 import { Password } from '../entities/password';
 import { UsersRepository } from '../repositories/users-repository';
 import { Injectable } from '@nestjs/common';
