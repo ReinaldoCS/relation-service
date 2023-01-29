@@ -4,6 +4,7 @@ import { Name } from '../entities/name';
 import { Password } from '../entities/password';
 import { UsersRepository } from '../repositories/users-repository';
 import { Injectable } from '@nestjs/common';
+import { AppException } from '@helpers/AppException';
 
 interface RegisterUserRequest {
   name: string;
@@ -21,6 +22,12 @@ export class RegisterUser {
 
   async execute(request: RegisterUserRequest): Promise<RegisterUserResponse> {
     const { name, email, password } = request;
+
+    const userAlreadyExists = await this.userRepository.findByEmail(email);
+
+    if (userAlreadyExists) {
+      throw new AppException('Email in use');
+    }
 
     const user = new User({
       name: new Name(name),

@@ -7,4 +7,16 @@ export class InMemoryUsersRepository implements UsersRepository {
   async create(user: User): Promise<void> {
     this.users.push(user);
   }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const userAlreadyExists = this.users.find(
+      (user) => user.email.value === email,
+    );
+
+    if (!userAlreadyExists) {
+      return null;
+    }
+
+    return userAlreadyExists;
+  }
 }

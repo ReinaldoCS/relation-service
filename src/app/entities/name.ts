@@ -1,3 +1,5 @@
+import { AppException } from '@helpers/AppException';
+
 export class Name {
   private name: string;
 
@@ -5,7 +7,7 @@ export class Name {
     const isNameLengthValid = this.validateNameLength(name);
 
     if (!isNameLengthValid) {
-      throw new Error('Name length error.');
+      throw new AppException('Name length error.');
     }
     this.name = name;
   }

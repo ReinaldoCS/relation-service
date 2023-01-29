@@ -1,4 +1,4 @@
-import { PasswordError } from '@application/errors/password-exception';
+import { AppException } from '@helpers/AppException';
 
 export class Password {
   private readonly password: string;
@@ -11,21 +11,19 @@ export class Password {
       this.validateCharacterSequence(password);
 
     if (!isPasswordLengthValid) {
-      throw new Error('Password must be at least 8 characters long.');
+      throw new AppException('Password must be at least 8 characters long.');
     }
 
     if (!isPasswordHasUpper) {
-      throw new PasswordError(
-        'Password must have at least 1 lowercase letter.',
-      );
+      throw new AppException('Password must have at least 1 lowercase letter.');
     }
 
     if (!isPasswordHasNumber) {
-      throw new PasswordError('Password must have at least 1 number.');
+      throw new AppException('Password must have at least 1 number.');
     }
 
     if (!isPasswordHasCharacterSequence) {
-      throw new PasswordError(
+      throw new AppException(
         'Password has 3 characters repeated in sequence are not allowed.',
       );
     }

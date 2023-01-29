@@ -1,3 +1,5 @@
+import { AppException } from '@helpers/AppException';
+
 export class Email {
   private readonly email: string;
 
@@ -5,7 +7,7 @@ export class Email {
     const isEmailHasTypeEmail = this.validateEmailType(email);
 
     if (!isEmailHasTypeEmail) {
-      throw new Error('E-mail type are not allowed.');
+      throw new AppException('E-mail type are not allowed.');
     }
 
     this.email = email.toLocaleLowerCase();

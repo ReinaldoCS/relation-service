@@ -1,4 +1,4 @@
-export class PasswordError extends Error {
+export class AppException extends Error {
   message: string;
 
   constructor(message: string) {
