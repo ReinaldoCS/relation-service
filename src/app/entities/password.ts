@@ -1,3 +1,5 @@
+import { PasswordError } from '@application/errors/password-exception';
+
 export class Password {
   private readonly password: string;
 
@@ -13,15 +15,17 @@ export class Password {
     }
 
     if (!isPasswordHasUpper) {
-      throw new Error('Password must have at least 1 lowercase letter.');
+      throw new PasswordError(
+        'Password must have at least 1 lowercase letter.',
+      );
     }
 
     if (!isPasswordHasNumber) {
-      throw new Error('Password must have at least 1 number.');
+      throw new PasswordError('Password must have at least 1 number.');
     }
 
     if (!isPasswordHasCharacterSequence) {
-      throw new Error(
+      throw new PasswordError(
         'Password has 3 characters repeated in sequence are not allowed.',
       );
     }
