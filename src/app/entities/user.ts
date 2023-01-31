@@ -53,6 +53,12 @@ export class User {
     this.props.password = password;
   }
 
+  public setNewPassword(password: string) {
+    const newPassword = new Password(password);
+
+    this.props.password = newPassword;
+  }
+
   public get email(): Email {
     return this.props.email;
   }

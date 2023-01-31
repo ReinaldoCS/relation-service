@@ -19,4 +19,12 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     return userAlreadyExists;
   }
+
+  async save(user: User): Promise<void> {
+    const userIndex = this.users.findIndex((user) => user.email === user.email);
+
+    if (userIndex >= 0) {
+      this.users[userIndex] = user;
+    }
+  }
 }
