@@ -16,3 +16,22 @@ export class CreateUserBody {
   @IsString()
   password: string;
 }
+
+export class ResetUserPasswordBody {
+  @IsNotEmpty()
+  @Length(8)
+  @IsString()
+  password: string;
+}
+
+export class AuthUserBody {
+  @IsNotEmpty()
+  @IsEmail()
+  @IsString()
+  email: string;
+
+  @IsNotEmpty()
+  @Length(8)
+  @IsString()
+  password: string;
+}
