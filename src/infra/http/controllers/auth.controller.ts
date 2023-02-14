@@ -20,7 +20,7 @@ export class AuthUserController {
       const token = await this.authUser.execute(body);
 
       return {
-        token,
+        auth: token,
       };
     } catch (error) {
       if (error instanceof AppException) {
