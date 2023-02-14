@@ -1,20 +1,19 @@
+import { Email } from '@application/entities/email';
 import { AppException } from '@helpers/AppException';
+import { makeUser } from '@test/factories/user-factory';
 import { InMemoryUsersRepository } from '@test/repositories/in-memory-users-repository';
-import { RegisterUser } from './register-user';
 import { ResetPassword } from './reset-password';
 
 describe('Reset password', () => {
   it('should be able to reset password', async () => {
     const inMemoryUsersRepository = new InMemoryUsersRepository();
-
-    const registerUser = new RegisterUser(inMemoryUsersRepository);
     const resetPassword = new ResetPassword(inMemoryUsersRepository);
 
-    await registerUser.execute({
-      name: 'Foo Bar',
-      email: 'for.bar@gmail.com.br',
-      password: 'Myp@ssw0rd',
+    const user = makeUser({
+      email: new Email('for.bar@gmail.com.br'),
     });
+
+    inMemoryUsersRepository.create(user);
 
     const { status } = await resetPassword.execute({
       email: 'for.bar@gmail.com.br',
