@@ -13,12 +13,14 @@ import { CreateUserBody } from '../dtos/create-user-body';
 import { AppException } from '@helpers/AppException';
 import { ResetPassword } from '@application/use-cases/reset-password';
 import { Request } from 'express';
+import { AuthUser } from '@application/use-cases/auth-user';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private registerUser: RegisterUser,
     private resetPassword: ResetPassword,
+    private authUser: AuthUser,
   ) {}
 
   @Post()
@@ -62,6 +64,27 @@ export class UsersController {
         email: email.toString(),
         newPassword: password,
       });
+    } catch (error) {
+      if (error instanceof AppException) {
+        throw new BadRequestException({
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        });
+      }
+
+      const errorMessage = (error as Error).message;
+      throw new InternalServerErrorException(errorMessage);
+    }
+  }
+
+  @Post('auth')
+  async sign(@Body() body: { email: string; password: string }) {
+    try {
+      const token = await this.authUser.execute(body);
+
+      return {
+        token,
+      };
     } catch (error) {
       if (error instanceof AppException) {
         throw new BadRequestException({
